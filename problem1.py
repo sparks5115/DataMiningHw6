@@ -22,7 +22,7 @@ def Terms_and_Conditions():
     '''
     #*******************************************
     # CHANGE HERE: if you have read and agree with the term above, change "False" to "True".
-    Read_and_Agree = False
+    Read_and_Agree = True
     #*******************************************
     return Read_and_Agree
 
@@ -41,7 +41,8 @@ def Terms_and_Conditions():
 def update_memory(a, r, Rt, Ct):
     #########################################
     ## INSERT YOUR CODE HERE (25 points)
-    
+    Rt[a] += r
+    Ct[a] += 1
     #########################################
     #------ (25 points / 100 total points) -----------
     '''  
@@ -70,7 +71,7 @@ def update_memory(a, r, Rt, Ct):
 def choose_action_explore(c):
     #########################################
     ## INSERT YOUR CODE HERE (25 points)
-    
+    a = np.random.randint(0, c)
     #########################################
     return a
     #------ (25 points / 100 total points) -----------
@@ -103,7 +104,7 @@ def choose_action_explore(c):
 def choose_action_exploit(Rt, Ct):
     #########################################
     ## INSERT YOUR CODE HERE (25 points)
-    
+    a = np.argmax(np.nan_to_num(Rt/Ct))
     #########################################
     return a
     #------ (25 points / 100 total points) -----------
@@ -136,7 +137,8 @@ def choose_action_exploit(Rt, Ct):
 def choose_action(Rt, Ct, e=0.05):
     #########################################
     ## INSERT YOUR CODE HERE (25 points)
-    
+    a = choose_action_exploit(Rt, Ct) if (np.random.rand()>e) else choose_action_explore(len(Rt))
+
     #########################################
     return a
     #------ (25 points / 100 total points) -----------
